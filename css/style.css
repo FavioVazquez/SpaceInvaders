@@ -1,0 +1,132 @@
+@font-face {
+	font-family: "hobo";
+	src: url("../fonts/hobo.ttf") format('truetype'), url("../fonts/hobo.eot") format('embedded-opentype');
+}
+
+body {
+	background-image: url('../pics/stars.bmp');
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	cursor: default;
+}
+
+div {
+	font-family: "hobo", Arial, "Times New Roman", serif;
+	text-align: center;
+	color: aliceblue;
+	background-color: black;
+	display: block;
+	position: absolute;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 504px;
+	height: 700px;
+	border: 2px solid;
+}
+
+label {
+	font-family: "hobo", Arial, "Times New Roman", serif;
+	font-size: larger;
+	color: aliceblue;
+	background-color: black;
+	display: block;
+	margin: auto;
+	text-align: center;
+}
+
+input {
+	font-family: "hobo", Arial, "Times New Roman", serif;
+	font-size: larger;
+	color: aliceblue;
+	background-color: black;
+	display: block;
+	margin: auto;
+	text-align: center;
+}
+
+input[type=range] {
+	-webkit-appearance: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+	width: 450px;
+	height: 5px;
+	background: #ddd;
+	border: none;
+	border-radius: 3px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	border: black;
+	height: 16px;
+	width: 16px;
+	border-radius: 50%;
+	background: dimgray;
+	margin-top: -5px;
+}
+
+input[type=range]:focus {
+	outline: none;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+	background: #ccc;
+}
+
+div p {
+	font-size: x-large;
+}
+
+button {
+	font-family: "hobo", Arial, "Times New Roman", serif;
+	font-size: x-large;
+	color: aliceblue;
+	background-color: black;
+	display: block;
+	margin: auto;
+	vertical-align: middle;
+}
+
+div button:hover {
+	color: aliceblue;
+	background-color: dimgray;
+}
+
+.play {
+	font-family: "hobo", Arial, "Times New Roman", serif;
+	font-size: xx-large;
+	color: aliceblue;
+	background-color: black;
+	display: block;
+	margin: auto;
+	vertical-align: middle;
+}
+
+canvas {
+	background-color: black;
+	display: block;
+	position: absolute;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.yesButton{
+	display: inline-block;
+	position: relative;
+}
+
+.noButton{
+	display: inline-block;
+	position: relative;
+	margin-left: 40px;
+}
