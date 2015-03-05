@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head lang="en">
+	<meta charset="UTF-8">
+	<title>Simple Space Invaders</title>
+	<script src="libs/soundFX.js"></script>
+	<script src="libs/classes.js"></script>
+	<script src="libs/logic.js"></script>
+	<link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+<div>
+	<br/><br/><br/><br/><br/><br/>
+	<label for="user">Enter your name</label><br/>
+	<input type="text" value="your name" id="user" onclick="this.value = '';"/><br/><br/><br/><br/>
+
+	<p>Difficulty</p>
+	<button onclick="modality(this)" style="background-color: dimgray">Easy</button>
+	<br/>
+	<button onclick="modality(this)">Medium</button>
+	<br/>
+	<button onclick="modality(this)">Hard</button>
+	<br/><br/><br/><br/><br/><br/>
+	<button class="play" onclick="startGame()">PLAY!</button>
+</div>
+<div style="visibility: hidden; width: 300px; height: 300px">
+	<br/>
+
+	<p>Press 'p' to resume</p><br/><br/>
+	<label for="sfx">SFX Volume</label><br/>
+	<input type="range" id="sfx" value="50" onchange="updateVolume(this)"/><br/><br/><br/>
+	<label for="music">Music Volume</label><br/>
+	<input type="range" id="music" value="50" onchange="updateVolume(this)"/>
+</div>
+
+<!Game over div>
+<div style="visibility: hidden; width: 400px; height: 300px">
+	<p id="lostMessage"></p>
+
+	<p id="scoreMessage"></p><br/><br/>
+
+	<p>Do You want to restart?</p><br/><br/>
+	<button class="yesButton" onclick="restartGame(0);">Yes</button>
+	<button class="noButton" onclick="restartApplication(0);">Hell no</button>
+</div>
+
+<!Win div>
+<div style="visibility: hidden; width: 400px; height: 300px">
+
+	<p id="winMessage"></p>
+
+	<p id="scoreWinMessage"></p><br/><br/>
+
+	<p>Restart</p><br/><br/>
+	<button class="yesButton" onclick="restartGame(1);">Yes</button>
+	<button class="noButton" onclick="restartApplication(1);">Hell no</button>
+</div>
+
+<script>
+	var mode = 0;
+	var name = "";
+
+	//plays the music of the menu
+	menuSoundtrack.play();
+
+	var modality = function (element) {
+		var buttons = document.querySelectorAll('button');
+		var content = element.innerHTML;
+
+		element.style.backgroundColor = "dimgray";
+
+		if (content === "Easy") {
+			buttons[1].style.backgroundColor = buttons[2].style.backgroundColor = "black";
+			mode = 0;
+		} else if (content === "Medium") {
+			buttons[0].style.backgroundColor = buttons[2].style.backgroundColor = "black";
+			mode = 1;
+		} else {
+			buttons[1].style.backgroundColor = buttons[0].style.backgroundColor = "black";
+			mode = 2;
+		}
+	};
+
+	var startGame = function () {
+		name = document.querySelector('input').value;
+		document.querySelector("div").style.visibility = "hidden";
+		main(name, mode);
+	};
+
+	var updateVolume = function (slider) {
+		var volume = parseInt(slider.value) / 100;
+		if (slider.id === "music") {
+			gameSoundtrack.volume = menuSoundtrack.volume = volume;
+		} else {
+			tankhit.volume = tankshot.volume = alienhit.volume = alienshot.volume = cityhit.volume = volume;
+		}
+	};
+
+	var restartGame = function (source) {
+		victorySound.pause();
+		defeatSound.pause();
+		document.body.removeChild(document.querySelector("canvas"));
+		(source === 0) ? document.querySelectorAll("div")[2].style.visibility = "hidden"
+				: document.querySelectorAll("div")[3].style.visibility = "hidden";
+		main(name, mode);
+	};
+
+	var restartApplication = function (source) {
+		victorySound.pause();
+		defeatSound.pause();
+		menuSoundtrack.play();
+		document.body.removeChild(document.querySelector("canvas"));
+		(source === 0) ? document.querySelectorAll("div")[2].style.visibility = "hidden"
+				: document.querySelectorAll("div")[3].style.visibility = "hidden";
+		document.querySelectorAll("div")[0].style.visibility = "visible";
+	};
+</script>
+</body>
+</html>
